@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(name = "Flightontime")
 @Table(name = "flightontimes")
 @Data
@@ -50,5 +53,8 @@ public class Flightontime {
 
     @JsonProperty("DEP_TIME_BLK")
     private String DEP_TIME_BLK;
+
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
+    private List<PredictionResponse> predictions = new ArrayList<>();
 
 }
