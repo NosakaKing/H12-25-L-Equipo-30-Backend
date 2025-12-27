@@ -1,1 +1,56 @@
 Hola a todos bienvenidos al grupo de trabajo "H12-25-L-Equipo 30-Data Science"
+
+
+JSON para realizar pruebas de predicion de vuelos:
+
+vuelo puntual:
+{
+  "MONTH": 3,
+  "DAY_OF_WEEK": 2,
+  "DISTANCE_GROUP": 2,
+  "SEGMENT_NUMBER": 1,
+  "CONCURRENT_FLIGHTS": 1,
+  "PRCP": 0.0,
+  "TMAX": 25.0,
+  "AWND": 8.0,
+  "PLANE_AGE": 5,
+  "AIRPORT_FLIGHTS_MONTH": 800,
+  "CARRIER_NAME": "DL",
+  "DEPARTING_AIRPORT": "ATL",
+  "DEP_TIME_BLK": "0900-0959"
+}
+
+
+Vuelo retrasado:
+    {
+  "MONTH": 12,
+  "DAY_OF_WEEK": 5,
+  "DISTANCE_GROUP": 4,
+  "SEGMENT_NUMBER": 6,
+  "CONCURRENT_FLIGHTS": 5,
+  "PRCP": 0.8,
+  "TMAX": 32.0,
+  "AWND": 15.5,
+  "PLANE_AGE": 18,
+  "AIRPORT_FLIGHTS_MONTH": 1500,
+  "CARRIER_NAME": "AA",
+  "DEPARTING_AIRPORT": "MIA",
+  "DEP_TIME_BLK": "1800-1859"
+}
+
+vuelo con error:
+{
+  "MONTH": 11,
+  "DAY_OF_WEEK": 4,
+  "DISTANCE_GROUP": 3,
+  "SEGMENT_NUMBER": 2,
+  "CONCURRENT_FLIGHTS": 4,
+  "PRCP": 0.3,
+  "TMAX": 20.0,
+  "AWND": 10.0,
+  "PLANE_AGE": 12,
+  "AIRPORT_FLIGHTS_MONTH": 1200,
+  "CARRIER_NAME": "ZZ",
+  "DEPARTING_AIRPORT": "XXX",
+  "DEP_TIME_BLK": "9999-9999"
+}

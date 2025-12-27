@@ -1,12 +1,19 @@
 package com.h12_25.flightontime.dto;
 
-import java.time.LocalDateTime;
 
 public record FlightRequest(
-        String aerolinea,
-        String origen,
-        String destino,
-        String fecha_partida,
-        Double distancia_km
+               Integer MONTH,
+               Integer DAY_OF_WEEK,
+               Integer DISTANCE_GROUP,
+               Integer SEGMENT_NUMBER,
+               Integer CONCURRENT_FLIGHTS,
+               Double PRCP,
+               Double TMAX,
+               Double AWND,
+               Integer PLANE_AGE,
+               Integer AIRPORT_FLIGHTS_MONTH,
+               String CARRIER_NAME,
+               String DEPARTING_AIRPORT,
+               String DEP_TIME_BLK
 ) {
 }
