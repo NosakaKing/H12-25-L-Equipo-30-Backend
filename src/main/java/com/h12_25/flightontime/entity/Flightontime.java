@@ -1,8 +1,16 @@
 package com.h12_25.flightontime.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Entity(name = "Flightontime")
+@Table(name = "flightontimes")
+@Data
 public class Flightontime {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @JsonProperty("MONTH")
     private Integer MONTH;
