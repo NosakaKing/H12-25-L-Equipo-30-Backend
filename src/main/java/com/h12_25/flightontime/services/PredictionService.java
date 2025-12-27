@@ -4,7 +4,10 @@ import ai.onnxruntime.*;
 import com.h12_25.flightontime.client.DsClient;
 import com.h12_25.flightontime.dto.FlightRequest;
 import com.h12_25.flightontime.dto.PredictResponse;
+import com.h12_25.flightontime.entity.Flightontime;
+import com.h12_25.flightontime.repository.IFlightontimeRepository;
 import com.h12_25.flightontime.util.RiskMapLoader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,6 +24,9 @@ public class PredictionService {
     private OrtEnvironment env;
     private OrtSession session;
     private RiskMapLoader riskMapLoader;
+
+    @Autowired
+    private  IFlightontimeRepository flightontimeRepository;
 
     public PredictionService() throws OrtException {
         env = OrtEnvironment.getEnvironment();
@@ -112,6 +118,27 @@ public class PredictionService {
                     }
             };
 
+            // Guardar en la base de datos
+            Flightontime entity = new Flightontime();
+            entity.setMONTH(dto.MONTH());
+            entity.setDAY_OF_WEEK(dto.DAY_OF_WEEK());
+            entity.setDISTANCE_GROUP(dto.DISTANCE_GROUP());
+            entity.setSEGMENT_NUMBER(dto.SEGMENT_NUMBER());
+            entity.setCONCURRENT_FLIGHTS(dto.CONCURRENT_FLIGHTS());
+            entity.setPRCP(dto.PRCP());
+            entity.setTMAX(dto.TMAX());
+            entity.setAWND(dto.AWND());
+            entity.setPLANE_AGE(dto.PLANE_AGE());
+            entity.setAIRPORT_FLIGHTS_MONTH(dto.AIRPORT_FLIGHTS_MONTH());
+            entity.setCARRIER_NAME(dto.CARRIER_NAME());
+            entity.setDEPARTING_AIRPORT(dto.DEPARTING_AIRPORT());
+            entity.setDEP_TIME_BLK(dto.DEP_TIME_BLK());
+
+            flightontimeRepository.save(entity);
+
+
+
+
             //  Crear un tensor ONNX a partir del arreglo de entrada (inputData).
             //  Este tensor es el formato que ONNX Runtime necesita para procesar los datos.
             OnnxTensor inputTensor = OnnxTensor.createTensor(env, inputData);
@@ -146,6 +173,9 @@ public class PredictionService {
            // - prevision → convierte la clase numérica en un texto entendible ("Puntual" o "Retrasado").
             Float probabilidad = probs.get(String.valueOf(predictedClass));
             String prevision = predictedClass == 1 ? "Retrasado" : "Puntual";
+
+
+
 
             return new PredictResponse(prevision, probabilidad);
 

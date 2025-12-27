@@ -2,6 +2,7 @@ package com.h12_25.flightontime.controller;
 
 import com.h12_25.flightontime.dto.FlightRequest;
 import com.h12_25.flightontime.dto.PredictResponse;
+import com.h12_25.flightontime.repository.IFlightontimeRepository;
 import com.h12_25.flightontime.services.PredictionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class FlightOnTimeController {
 
 
     private final PredictionService predictionService;
+    private final IFlightontimeRepository flightontimeRepository;
 
     /**
      * Endpoint REST para realizar predicciones de vuelos.
